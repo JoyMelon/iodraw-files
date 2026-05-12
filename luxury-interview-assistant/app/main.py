@@ -8,7 +8,7 @@ import os
 from . import models, schemas
 from .resume_parser import ResumeParser
 from .interview_engine import InterviewEngine
-from .luxury_knowledge_rag import LuxuryKnowledgeRAG
+from .luxury_knowledge_rag_simple import LuxuryKnowledgeRAG
 
 DATABASE_URL = "sqlite:///./data/luxury_interview.db"
 os.makedirs("./data", exist_ok=True)

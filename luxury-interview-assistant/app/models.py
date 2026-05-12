@@ -32,8 +32,6 @@ class LuxuryBrand(Base):
     signature_product = Column(Text)
     beliefs = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)
-    
-    job_descriptions = relationship("JobDescription", back_populates="target_brands")
 
 class JobDescription(Base):
     __tablename__ = "job_descriptions"
@@ -47,7 +45,6 @@ class JobDescription(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     
     interviews = relationship("Interview", back_populates="job")
-    target_brands = relationship("LuxuryBrand", back_populates="job_descriptions")
 
 class Resume(Base):
     __tablename__ = "resumes"
