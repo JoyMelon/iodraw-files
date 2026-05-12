@@ -532,9 +532,23 @@ def render_navbar():
                 st.session_state.show_modal = 'login'
                 st.rerun()
         else:
-            if st.button("进入系统", key="nav_dashboard", type="primary"):
-                st.session_state.current_page = 'dashboard'
-                st.rerun()
+            try:
+                headers = {"Authorization": f"Bearer {st.session_state.token}"}
+                user_response = requests.get(f"{API_BASE_URL}/users/me", headers=headers)
+                if user_response.status_code == 200:
+                    if st.button("进入系统", key="nav_dashboard", type="primary"):
+                        st.session_state.current_page = 'dashboard'
+                        st.rerun()
+                else:
+                    st.session_state.token = None
+                    if st.button("立即登录", key="nav_login", type="primary"):
+                        st.session_state.show_modal = 'login'
+                        st.rerun()
+            except Exception:
+                st.session_state.token = None
+                if st.button("立即登录", key="nav_login", type="primary"):
+                    st.session_state.show_modal = 'login'
+                    st.rerun()
     
     st.markdown("</div></div>", unsafe_allow_html=True)
 
