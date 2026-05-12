@@ -1,27 +1,33 @@
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
-from enum import Enum
-
-class InterviewStatus(str, Enum):
-    waiting = "waiting"
-    answering = "answering"
-    resolved = "resolved"
 
 class UserBase(BaseModel):
-    name: str
+    username: str
     email: str
-    role: Optional[str] = "candidate"
+    full_name: Optional[str] = None
 
 class UserCreate(UserBase):
-    pass
+    password: str
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
 
 class User(UserBase):
     id: int
+    is_active: bool
     created_at: datetime
     
     class Config:
         orm_mode = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: Optional[str] = None
 
 class LuxuryBrandBase(BaseModel):
     name: str
@@ -57,6 +63,26 @@ class JobDescription(JobDescriptionBase):
     class Config:
         orm_mode = True
 
+class JobPostingBase(BaseModel):
+    title: str
+    company: Optional[str] = None
+    description: Optional[str] = None
+    requirements: Optional[str] = None
+    brand: Optional[str] = None
+    location: Optional[str] = None
+
+class JobPostingCreate(JobPostingBase):
+    pass
+
+class JobPosting(JobPostingBase):
+    id: int
+    user_id: int
+    is_active: bool
+    created_at: datetime
+    
+    class Config:
+        orm_mode = True
+
 class ResumeBase(BaseModel):
     name: str
     skills: Optional[str] = None
@@ -69,8 +95,14 @@ class ResumeCreate(ResumeBase):
 
 class Resume(ResumeBase):
     id: int
-    score: float
+    user_id: int
+    original_filename: Optional[str] = None
+    file_type: Optional[str] = None
+    parsed_content: Optional[str] = None
     luxury_translated_version: Optional[str] = None
+    optimization_suggestions: Optional[str] = None
+    score: float
+    is_processed: bool
     created_at: datetime
     
     class Config:
@@ -105,7 +137,7 @@ class InterviewCreate(InterviewBase):
 
 class Interview(InterviewBase):
     id: int
-    status: InterviewStatus
+    status: str
     score: float
     feedback: Optional[str] = None
     created_at: datetime
@@ -115,7 +147,7 @@ class Interview(InterviewBase):
         orm_mode = True
 
 class ResumeUploadRequest(BaseModel):
-    resume_text: str
+    resume_text: Optional[str] = None
     name: str
 
 class InterviewStartRequest(BaseModel):
