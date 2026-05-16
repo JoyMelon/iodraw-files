@@ -4,26 +4,24 @@ import time
 
 # 页面配置
 st.set_page_config(
-    page_title="LUXURY INTERVIEW AI",
+    page_title="奢华面试AI",
     page_icon="💎",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# 定制CSS - 极致奢华版
+# 自定义CSS - 奢华升级版
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
     --gold-light: #F5E6C8;
     --gold: #D4AF37;
     --gold-dark: #B8860B;
-    --gold-deep: #8B6914;
     --navy: #0A0E1C;
-    --navy-light: #151B30;
-    --white: #FFFFFF;
-    --white-soft: rgba(255,255,255,0.8);
+    --navy-light: #151930;
+    --white-soft: rgba(255,255,255,0.7);
 }
 
 * {
@@ -39,23 +37,24 @@ h1, h2, h3 {
 }
 
 .main {
-    background: var(--navy);
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
 }
 
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 .block-container {padding-top: 0 !important; padding-bottom: 0 !important;}
 
-/* 奢华导航 */
+/* 奢华导航栏 */
 .luxury-nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    background: linear-gradient(180deg, rgba(10,14,28,0.95) 0%, rgba(10,14,28,0) 100%);
-    padding: 2rem 4rem;
+    background: linear-gradient(180deg, rgba(10,14,28,0.95) 0%, rgba(10,14,28,0.85) 100%);
     backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212,175,55,0.15);
+    padding: 1.5rem 2rem;
 }
 
 .nav-wrapper {
@@ -68,88 +67,47 @@ footer {visibility: hidden;}
 
 .nav-brand {
     font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.3em;
+    font-size: 1.25rem;
+    letter-spacing: 0.25em;
     color: var(--gold-light);
     text-transform: uppercase;
     font-weight: 600;
-}
-
-.nav-actions {
     display: flex;
-    gap: 1.5rem;
     align-items: center;
+    gap: 0.75rem;
 }
 
-.nav-link {
-    color: var(--white-soft);
-    text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.3s ease;
+/* 主内容区域 - 避开固定导航 */
+.main-content {
+    padding-top: 100px;
 }
 
-.nav-link:hover {
-    color: var(--gold);
-}
-
-/* Hero区域 - 全屏奢华 */
+/* Hero区域 */
 .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(212,175,55,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(212,175,55,0.05) 0%, transparent 40%),
-        linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
-}
-
-.hero-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10;
+    padding: 6rem 2rem 5rem;
     text-align: center;
-    max-width: 900px;
-    padding: 0 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .hero-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    letter-spacing: 0.5em;
+    font-size: 0.9rem;
+    letter-spacing: 0.4em;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 3rem;
-    animation: fadeInDown 1s ease-out;
+    margin-bottom: 2.5rem;
 }
 
 .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 5.5rem;
-    font-weight: 300;
-    color: var(--white);
+    font-size: 4.5rem;
+    color: white;
     line-height: 1.1;
-    margin-bottom: 2rem;
-    animation: fadeInUp 1s ease-out 0.2s both;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
 }
 
-.hero-title span {
+.hero-highlight {
     background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -159,103 +117,43 @@ footer {visibility: hidden;}
 
 .hero-subtitle {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     color: var(--white-soft);
+    margin-bottom: 3rem;
+    line-height: 1.6;
     font-weight: 300;
-    letter-spacing: 0.05em;
-    margin-bottom: 3.5rem;
-    animation: fadeInUp 1s ease-out 0.4s both;
 }
 
-.hero-cta {
-    animation: fadeInUp 1s ease-out 0.6s both;
+/* 区域通用样式 */
+.section {
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* 奢华按钮 */
-.luxury-btn-primary {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-    color: var(--navy);
-    border: none;
-    padding: 1.2rem 3.5rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.luxury-btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.6s ease;
-}
-
-.luxury-btn-primary:hover::before {
-    left: 100%;
-}
-
-.luxury-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 60px rgba(212,175,55,0.3);
-}
-
-.luxury-btn-secondary {
-    background: transparent;
-    color: var(--gold-light);
-    border: 1px solid rgba(212,175,55,0.4);
-    padding: 1.15rem 3rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.4s ease;
-}
-
-.luxury-btn-secondary:hover {
-    background: rgba(212,175,55,0.1);
-    border-color: var(--gold);
-}
-
-/* 品牌展示区域 */
-.brands-section {
-    padding: 8rem 4rem;
-    position: relative;
-}
-
-.brands-header {
+.section-label {
     text-align: center;
-    margin-bottom: 5rem;
-}
-
-.brands-label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     letter-spacing: 0.3em;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.brands-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    color: var(--white);
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 3rem;
     font-weight: 400;
 }
 
+/* 品牌展示网格 */
 .brands-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     border-top: 1px solid rgba(212,175,55,0.15);
     border-left: 1px solid rgba(212,175,55,0.15);
@@ -269,80 +167,67 @@ footer {visibility: hidden;}
     justify-content: center;
     border-right: 1px solid rgba(212,175,55,0.15);
     border-bottom: 1px solid rgba(212,175,55,0.15);
-    padding: 2rem;
-    transition: all 0.5s ease;
+    padding: 1.5rem;
+    transition: all 0.4s ease;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.brand-cell::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(212,175,55,0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    background: transparent;
 }
 
 .brand-cell:hover {
-    background: rgba(212,175,55,0.05);
-}
-
-.brand-cell:hover::before {
-    opacity: 1;
+    background: rgba(212,175,55,0.06);
 }
 
 .brand-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    filter: drop-shadow(0 0 20px rgba(212,175,55,0.2));
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    filter: drop-shadow(0 0 15px rgba(212,175,55,0.2));
 }
 
 .brand-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--gold-light);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 500;
 }
 
-/* 功能展示区域 */
-.features-section {
-    padding: 8rem 4rem;
-    background: linear-gradient(180deg, transparent 0%, rgba(212,175,55,0.02) 100%);
-}
-
-.features-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.features-header {
-    text-align: center;
-    margin-bottom: 5rem;
-}
-
+/* 功能网格 */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .feature-item {
-    padding: 4rem 3rem;
-    border: 1px solid rgba(212,175,55,0.1);
-    transition: all 0.5s ease;
-    position: relative;
+    padding: 3.5rem 2.5rem;
+    border: 1px solid rgba(212,175,55,0.12);
+    transition: all 0.4s ease;
 }
 
-.feature-item:nth-child(1) { border-top: none; border-left: none; }
-.feature-item:nth-child(2) { border-top: none; }
-.feature-item:nth-child(3) { border-top: none; border-right: none; }
-.feature-item:nth-child(4) { border-left: none; border-bottom: none; }
-.feature-item:nth-child(5) { border-bottom: none; }
-.feature-item:nth-child(6) { border-right: none; border-bottom: none; }
+.feature-item:nth-child(1),
+.feature-item:nth-child(2),
+.feature-item:nth-child(3) {
+    border-top: none;
+}
+
+.feature-item:nth-child(1),
+.feature-item:nth-child(4) {
+    border-left: none;
+}
+
+.feature-item:nth-child(3),
+.feature-item:nth-child(6) {
+    border-right: none;
+}
+
+.feature-item:nth-child(4),
+.feature-item:nth-child(5),
+.feature-item:nth-child(6) {
+    border-bottom: none;
+}
 
 .feature-item:hover {
     background: rgba(212,175,55,0.05);
@@ -353,23 +238,22 @@ footer {visibility: hidden;}
     font-size: 0.8rem;
     color: var(--gold);
     letter-spacing: 0.2em;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .feature-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--white);
-    margin-bottom: 1rem;
-    font-weight: 400;
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
 }
 
-.feature-text {
+.feature-desc {
     color: var(--white-soft);
     line-height: 1.7;
     font-size: 0.95rem;
@@ -378,23 +262,15 @@ footer {visibility: hidden;}
 
 /* CTA区域 */
 .cta-section {
-    padding: 10rem 4rem;
+    padding: 6rem 2rem;
     text-align: center;
-    position: relative;
-}
-
-.cta-content {
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 10;
 }
 
 .cta-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    color: var(--white);
-    margin-bottom: 1.5rem;
+    font-size: 2.75rem;
+    color: white;
+    margin-bottom: 1rem;
     font-weight: 400;
 }
 
@@ -402,14 +278,14 @@ footer {visibility: hidden;}
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.25rem;
     color: var(--white-soft);
-    margin-bottom: 3rem;
-    font-weight: 300;
+    margin-bottom: 2.5rem;
 }
 
 /* 页脚 */
 .footer {
-    border-top: 1px solid rgba(212,175,55,0.1);
-    padding: 5rem 4rem 3rem;
+    border-top: 1px solid rgba(212,175,55,0.12);
+    padding: 4rem 2rem 2rem;
+    margin-top: 2rem;
 }
 
 .footer-content {
@@ -422,23 +298,23 @@ footer {visibility: hidden;}
 
 .footer-brand {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     letter-spacing: 0.25em;
     color: var(--gold-light);
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-text {
     color: rgba(255,255,255,0.5);
     font-size: 0.9rem;
     max-width: 300px;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 .footer-links {
     display: flex;
-    gap: 4rem;
+    gap: 3rem;
 }
 
 .footer-column h4 {
@@ -446,14 +322,14 @@ footer {visibility: hidden;}
     letter-spacing: 0.2em;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .footer-column a {
     display: block;
     color: rgba(255,255,255,0.5);
     text-decoration: none;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     font-size: 0.9rem;
     transition: color 0.3s ease;
 }
@@ -464,7 +340,7 @@ footer {visibility: hidden;}
 
 .footer-bottom {
     max-width: 1200px;
-    margin: 4rem auto 0;
+    margin: 3rem auto 0;
     padding-top: 2rem;
     border-top: 1px solid rgba(212,175,55,0.1);
     text-align: center;
@@ -473,64 +349,42 @@ footer {visibility: hidden;}
     letter-spacing: 0.1em;
 }
 
-/* 动画 */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Streamlit按钮美化 */
+.stButton > button {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%) !important;
+    color: var(--navy) !important;
+    border: none !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    font-size: 0.85rem !important;
+    padding: 0.85rem 2rem !important;
+    border-radius: 2px !important;
+    transition: all 0.3s ease !important;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(212,175,55,0.3) !important;
 }
 
-/* Dashboard样式 */
-.dashboard {
-    min-height: 100vh;
-    padding: 8rem 4rem 4rem;
+.stButton > button[kind="secondary"] {
+    background: transparent !important;
+    color: var(--gold-light) !important;
+    border: 1px solid rgba(212,175,55,0.4) !important;
 }
 
-.dashboard-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
+.stButton > button[kind="secondary"]:hover {
+    background: rgba(212,175,55,0.08) !important;
+    border-color: var(--gold) !important;
 }
 
-.dashboard-header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.dashboard-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--white);
-    margin-bottom: 1rem;
-}
-
-.dashboard-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    color: var(--white-soft);
-}
-
-/* 模态框 */
-.modal {
+/* 模态框样式 */
+.modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10,14,28,0.95);
-    backdrop-filter: blur(20px);
+    background: rgba(10,14,28,0.92);
+    backdrop-filter: blur(15px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -538,10 +392,10 @@ footer {visibility: hidden;}
 }
 
 .modal-box {
-    background: linear-gradient(135deg, rgba(21,27,48,0.98) 0%, rgba(10,14,28,0.98) 100%);
-    border: 1px solid rgba(212,175,55,0.2);
-    padding: 4rem;
-    max-width: 480px;
+    background: linear-gradient(135deg, rgba(21,25,48,0.98) 0%, rgba(10,14,28,0.98) 100%);
+    border: 1px solid rgba(212,175,55,0.25);
+    padding: 3rem;
+    max-width: 450px;
     width: 90%;
     position: relative;
 }
@@ -559,8 +413,8 @@ footer {visibility: hidden;}
 
 .modal-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--white);
+    font-size: 1.8rem;
+    color: white;
     margin-bottom: 0.5rem;
     text-align: center;
 }
@@ -568,63 +422,55 @@ footer {visibility: hidden;}
 .modal-subtitle {
     color: var(--white-soft);
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
 }
 
-.modal-input {
-    width: 100%;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(212,175,55,0.15);
-    padding: 1rem 1.25rem;
-    color: var(--white);
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
+/* Dashboard样式 */
+.dashboard {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.modal-input:focus {
-    outline: none;
-    border-color: var(--gold);
-    background: rgba(212,175,55,0.05);
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-/* Streamlit元素覆盖 */
-.stButton > button {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
+.dashboard-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    color: white;
+    margin-bottom: 0.5rem;
 }
 
-.stTextInput > div > div > input {
-    background: rgba(255,255,255,0.03) !important;
-    border: 1px solid rgba(212,175,55,0.15) !important;
-    color: var(--white) !important;
+.dashboard-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--white-soft);
 }
 
-.stSelectbox > div > div {
-    background: rgba(255,255,255,0.03) !important;
-    border: 1px solid rgba(212,175,55,0.15) !important;
-    color: var(--white) !important;
-}
-
+/* Tab样式 */
 .stTabs [data-baseweb="tab-list"] {
-    gap: 2rem;
+    gap: 2.5rem;
+    border-bottom: 1px solid rgba(212,175,55,0.15);
 }
 
 .stTabs [data-baseweb="tab"] {
-    background: transparent;
-    color: var(--white-soft);
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 1rem 0;
+    background: transparent !important;
+    color: var(--white-soft) !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    padding: 1rem 0 !important;
+    font-family: 'Inter', sans-serif !important;
 }
 
 .stTabs [data-baseweb="tab"][aria-selected="true"] {
-    color: var(--gold);
-    border-bottom: 1px solid var(--gold);
+    color: var(--gold) !important;
+    border-bottom: 2px solid var(--gold) !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -639,201 +485,166 @@ if 'current_page' not in st.session_state:
 if 'show_modal' not in st.session_state:
     st.session_state.show_modal = None
 
-# 奢华品牌数据
-luxury_brands = [
-    ("🏛️", "LOUIS VUITTON"),
-    ("👜", "CHANEL"),
-    ("👑", "HERMÈS"),
-    ("💍", "CARTIER"),
-    ("👠", "GUCCI"),
-    ("⌚", "ROLEX"),
-    ("👗", "DIOR"),
-    ("💎", "BVLGARI"),
-    ("🕶️", "PRADA"),
-    ("🎩", "BURBERRY")
-]
-
-# 功能数据
-features_data = [
-    {
-        "number": "01",
-        "icon": "🎯",
-        "title": "AI Interview Coach",
-        "text": "Intelligent question generation tailored for luxury brands, with real-time professional feedback."
-    },
-    {
-        "number": "02",
-        "icon": "📚",
-        "title": "Brand Knowledge Base",
-        "text": "Complete archives of luxury brand history, culture, heritage, and exclusive insider information."
-    },
-    {
-        "number": "03",
-        "icon": "🎭",
-        "title": "VIP Scenario Simulation",
-        "text": "Realistic high-end client service scenarios to elevate your professional service skills."
-    },
-    {
-        "number": "04",
-        "icon": "✨",
-        "title": "Resume Polishing",
-        "text": "Transform ordinary resumes into luxury industry style, highlighting your distinctive advantages."
-    },
-    {
-        "number": "05",
-        "icon": "📊",
-        "title": "Interview Analytics",
-        "text": "Comprehensive performance analysis with targeted improvement recommendations."
-    },
-    {
-        "number": "06",
-        "icon": "🌍",
-        "title": "Multilingual Support",
-        "text": "Interview support in Chinese, English, French, and more for international brands."
-    }
-]
-
-# 渲染奢华首页
-def render_luxury_landing():
-    # 导航栏
-    st.markdown('''
-    <div class="luxury-nav">
-        <div class="nav-wrapper">
-            <div class="nav-brand">LUXURY INTERVIEW AI</div>
-            <div class="nav-actions">
-    ''', unsafe_allow_html=True)
+# 主页面渲染
+def render_landing_page():
+    # 奢华导航栏
+    st.markdown('<div class="luxury-nav"><div class="nav-wrapper">', unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([3,1,1])
-    with col2:
-        if st.session_state.token:
-            if st.button("DASHBOARD", key="nav_dashboard"):
-                st.session_state.current_page = 'dashboard'
-                st.rerun()
-        else:
-            if st.button("SIGN IN", key="nav_login"):
-                st.session_state.show_modal = 'login'
-                st.rerun()
+    col1, col2, col3 = st.columns([3, 4, 3])
+    with col1:
+        st.markdown('<div class="nav-brand">💎 LUXURY INTERVIEW AI</div>', unsafe_allow_html=True)
     with col3:
-        if st.session_state.token:
-            if st.button("LOGOUT", key="nav_logout"):
-                st.session_state.token = None
-                st.rerun()
-        else:
-            if st.button("JOIN", key="nav_join"):
-                st.session_state.show_modal = 'register'
-                st.rerun()
+        btn_col1, btn_col2 = st.columns(2)
+        with btn_col1:
+            if st.session_state.token:
+                if st.button("DASHBOARD", key="nav_dashboard", type="primary", use_container_width=True):
+                    st.session_state.current_page = 'dashboard'
+                    st.rerun()
+            else:
+                if st.button("SIGN IN", key="nav_login", type="secondary", use_container_width=True):
+                    st.session_state.show_modal = 'login'
+        with btn_col2:
+            if st.session_state.token:
+                if st.button("LOGOUT", key="nav_logout", use_container_width=True):
+                    st.session_state.token = None
+                    st.rerun()
+            else:
+                if st.button("JOIN", key="nav_join", type="primary", use_container_width=True):
+                    st.session_state.show_modal = 'register'
     
-    st.markdown('''
-            </div>
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="main-content">', unsafe_allow_html=True)
     
     # Hero区域
-    st.markdown('''
+    st.markdown("""
     <div class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-pattern"></div>
-        <div class="hero-content">
-            <div class="hero-logo">💎 Premium Career Platform</div>
-            <h1 class="hero-title">
-                Master the Art of <span>Luxury</span> Interviews
-            </h1>
-            <p class="hero-subtitle">
-                Elevate your career in the world of luxury fashion, hospitality, and high-end brands
-            </p>
-            <div class="hero-cta">
-    ''', unsafe_allow_html=True)
+        <div class="hero-logo">✨ PREMIUM CAREER PLATFORM</div>
+        <h1 class="hero-title">
+            Master the Art of<br>
+            <span class="hero-highlight">Luxury Interviews</span>
+        </h1>
+        <p class="hero-subtitle">
+            Elevate your career in the world of luxury fashion, hospitality, and high-end brands.<br>
+            Exclusive interview preparation designed for excellence.
+        </p>
+    """, unsafe_allow_html=True)
     
-    btn_col1, btn_col2, btn_col3 = st.columns([2,1,2])
-    with btn_col2:
-        if st.button("BEGIN YOUR JOURNEY", key="hero_cta", use_container_width=True):
+    # 主要按钮
+    btn_col1, btn_col2, _ = st.columns([2, 2, 3])
+    with btn_col1:
+        if st.button("BEGIN YOUR JOURNEY", type="primary", key="hero_primary", use_container_width=True):
             if not st.session_state.token:
                 st.session_state.show_modal = 'register'
             else:
                 st.session_state.current_page = 'dashboard'
-            st.rerun()
-    
-    st.markdown('''
-            </div>
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
+                st.rerun()
+    with btn_col2:
+        if st.button("LEARN MORE", type="secondary", key="hero_secondary", use_container_width=True):
+            pass
+    st.markdown("</div>", unsafe_allow_html=True)
     
     # 品牌展示
-    st.markdown('''
-    <div class="brands-section">
-        <div class="brands-header">
-            <div class="brands-label">Our Partners</div>
-            <h2 class="brands-title">The World's Finest Brands</h2>
-        </div>
-        <div class="brands-grid">
-    ''', unsafe_allow_html=True)
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">OUR PARTNERS</div>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">The World\'s Finest Brands</h2>', unsafe_allow_html=True)
+    st.markdown('<div class="brands-grid">', unsafe_allow_html=True)
+    
+    luxury_brands = [
+        ("🏛️", "LOUIS VUITTON"),
+        ("👜", "CHANEL"),
+        ("👑", "HERMÈS"),
+        ("💍", "CARTIER"),
+        ("👠", "GUCCI"),
+        ("⌚", "ROLEX"),
+        ("👗", "DIOR"),
+        ("💎", "BVLGARI"),
+        ("🕶️", "PRADA"),
+        ("🎩", "BURBERRY")
+    ]
     
     for icon, name in luxury_brands:
-        st.markdown(f'''
+        st.markdown(f"""
         <div class="brand-cell">
             <div class="brand-icon">{icon}</div>
             <div class="brand-name">{name}</div>
         </div>
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
     
-    st.markdown('''
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
+    # 核心功能
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">WHAT WE OFFER</div>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">Premium Features</h2>', unsafe_allow_html=True)
+    st.markdown('<div class="features-grid">', unsafe_allow_html=True)
     
-    # 功能展示
-    st.markdown('''
-    <div class="features-section">
-        <div class="features-container">
-            <div class="features-header">
-                <div class="brands-label">What We Offer</div>
-                <h2 class="brands-title">Premium Features</h2>
-            </div>
-            <div class="features-grid">
-    ''', unsafe_allow_html=True)
+    features = [
+        {
+            "number": "01",
+            "icon": "🎯",
+            "title": "AI Interview Coach",
+            "desc": "Intelligent question generation tailored for luxury brands, with real-time professional feedback."
+        },
+        {
+            "number": "02",
+            "icon": "📚",
+            "title": "Brand Knowledge Base",
+            "desc": "Complete archives of luxury brand history, culture, heritage, and exclusive insider information."
+        },
+        {
+            "number": "03",
+            "icon": "🎭",
+            "title": "VIP Scenario Simulation",
+            "desc": "Realistic high-end client service scenarios to elevate your professional service skills."
+        },
+        {
+            "number": "04",
+            "icon": "✨",
+            "title": "Resume Polishing",
+            "desc": "Transform ordinary resumes into luxury industry style, highlighting your distinctive advantages."
+        },
+        {
+            "number": "05",
+            "icon": "📊",
+            "title": "Interview Analytics",
+            "desc": "Comprehensive performance analysis with targeted improvement recommendations."
+        },
+        {
+            "number": "06",
+            "icon": "🌍",
+            "title": "Multilingual Support",
+            "desc": "Interview support in Chinese, English, French, and more for international brands."
+        }
+    ]
     
-    for feature in features_data:
-        st.markdown(f'''
+    for feature in features:
+        st.markdown(f"""
         <div class="feature-item">
             <div class="feature-number">{feature["number"]}</div>
             <div class="feature-icon">{feature["icon"]}</div>
             <h3 class="feature-title">{feature["title"]}</h3>
-            <p class="feature-text">{feature["text"]}</p>
+            <p class="feature-desc">{feature["desc"]}</p>
         </div>
-        ''', unsafe_allow_html=True)
-    
-    st.markdown('''
-            </div>
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
     
     # CTA区域
-    st.markdown('''
-    <div class="cta-section">
-        <div class="cta-content">
-            <h2 class="cta-title">Ready to Begin?</h2>
-            <p class="cta-text">Join thousands of successful candidates who've landed their dream jobs in the luxury industry</p>
-        </div>
-    ''', unsafe_allow_html=True)
+    st.markdown('<div class="cta-section">', unsafe_allow_html=True)
+    st.markdown('<h2 class="cta-title">Ready to Begin?</h2>', unsafe_allow_html=True)
+    st.markdown('<p class="cta-text">Join thousands of successful candidates who\'ve landed their dream jobs in the luxury industry</p>', unsafe_allow_html=True)
     
-    cta_col1, cta_col2, cta_col3 = st.columns([2,1,2])
+    cta_col1, cta_col2, cta_col3 = st.columns([2, 1, 2])
     with cta_col2:
-        if st.button("GET STARTED", key="cta_final", use_container_width=True):
+        if st.button("GET STARTED", key="cta_final", type="primary", use_container_width=True):
             if not st.session_state.token:
                 st.session_state.show_modal = 'register'
             else:
                 st.session_state.current_page = 'dashboard'
-            st.rerun()
-    
-    st.markdown('''
-    </div>
-    ''', unsafe_allow_html=True)
+                st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
     
     # 页脚
-    st.markdown('''
+    st.markdown("""
     <div class="footer">
         <div class="footer-content">
             <div>
@@ -842,13 +653,13 @@ def render_luxury_landing():
             </div>
             <div class="footer-links">
                 <div class="footer-column">
-                    <h4>Product</h4>
+                    <h4>PRODUCT</h4>
                     <a href="#">AI Interview</a>
                     <a href="#">Brand Database</a>
                     <a href="#">Resume Tools</a>
                 </div>
                 <div class="footer-column">
-                    <h4>Company</h4>
+                    <h4>COMPANY</h4>
                     <a href="#">About</a>
                     <a href="#">Contact</a>
                     <a href="#">Privacy</a>
@@ -859,46 +670,38 @@ def render_luxury_landing():
             © 2024 LUXURY INTERVIEW AI. ALL RIGHTS RESERVED.
         </div>
     </div>
-    ''', unsafe_allow_html=True)
-
-# Dashboard页面
-def render_dashboard():
-    # 导航栏
-    st.markdown('''
-    <div class="luxury-nav">
-        <div class="nav-wrapper">
-            <div class="nav-brand">LUXURY INTERVIEW AI</div>
-            <div class="nav-actions">
-    ''', unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([3,1,1])
-    with col2:
-        if st.button("← HOME", key="db_home"):
+    st.markdown('</div>', unsafe_allow_html=True)
+
+def render_dashboard_page():
+    # 导航栏
+    st.markdown('<div class="luxury-nav"><div class="nav-wrapper">', unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns([3, 4, 3])
+    with col1:
+        st.markdown('<div class="nav-brand">💎 LUXURY INTERVIEW AI</div>', unsafe_allow_html=True)
+    with col3:
+        if st.button("← HOME", key="db_home", type="secondary", use_container_width=True):
             st.session_state.current_page = 'landing'
             st.rerun()
     
-    st.markdown('''
-            </div>
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
     
-    # Dashboard内容
-    st.markdown('''
-    <div class="dashboard">
-        <div class="dashboard-wrapper">
-            <div class="dashboard-header">
-                <h1 class="dashboard-title">Welcome to Your Dashboard</h1>
-                <p class="dashboard-subtitle">Your luxury career journey begins here</p>
-            </div>
-        </div>
+    st.markdown('<div class="main-content"><div class="dashboard">', unsafe_allow_html=True)
+    
+    # Dashboard头部
+    st.markdown("""
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">Welcome to Your Dashboard</h1>
+        <p class="dashboard-subtitle">Your luxury career journey begins here</p>
     </div>
-    ''', unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
     
     tab1, tab2, tab3, tab4 = st.tabs(["📚 Brand Knowledge", "💬 AI Interview", "📝 Resume Manager", "📊 Interview History"])
     
     with tab1:
-        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 2rem;">Luxury Brand Knowledge Base</h3>', unsafe_allow_html=True)
+        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 1.5rem;">Luxury Brand Knowledge Base</h3>', unsafe_allow_html=True)
         brands_info = [
             ("LOUIS VUITTON", "French luxury fashion house founded in 1854, renowned for its leather goods and monogram canvas"),
             ("CHANEL", "Parisian couture house established in 1910, famous for timeless elegance and the No.5 perfume"),
@@ -913,18 +716,18 @@ def render_dashboard():
                 st.info("More brand knowledge coming soon...")
     
     with tab2:
-        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 2rem;">Start Your AI Interview</h3>', unsafe_allow_html=True)
+        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 1.5rem;">Start Your AI Interview</h3>', unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
             st.selectbox("Select Target Brand", ["LOUIS VUITTON", "CHANEL", "HERMÈS", "GUCCI", "CARTIER"])
         with col2:
             st.selectbox("Interview Type", ["Brand Knowledge", "VIP Scenario", "Comprehensive"])
         
-        if st.button("BEGIN INTERVIEW"):
+        if st.button("BEGIN INTERVIEW", type="primary"):
             st.info("Interview feature coming soon...")
     
     with tab3:
-        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 2rem;">Resume Management</h3>', unsafe_allow_html=True)
+        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 1.5rem;">Resume Management</h3>', unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload your resume (PDF/DOCX)", type=['pdf', 'docx', 'doc'])
         if uploaded_file:
             st.success("Resume uploaded successfully!")
@@ -932,13 +735,14 @@ def render_dashboard():
                 st.info("Resume optimization feature coming soon...")
     
     with tab4:
-        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 2rem;">Interview History</h3>', unsafe_allow_html=True)
+        st.markdown('<h3 style="color: white; font-family: Playfair Display, serif; margin-bottom: 1.5rem;">Interview History</h3>', unsafe_allow_html=True)
         st.info("No interviews yet. Start your first interview to see your history!")
+    
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
-# 模态框
-def render_modal():
+def render_login_modal():
     if st.session_state.show_modal in ['login', 'register']:
-        st.markdown('<div class="modal">', unsafe_allow_html=True)
+        st.markdown('<div class="modal-overlay">', unsafe_allow_html=True)
         
         with st.container():
             st.markdown('<div class="modal-box">', unsafe_allow_html=True)
@@ -958,7 +762,7 @@ def render_modal():
                 
                 col1, col2 = st.columns(2)
                 with col1:
-                    submit = st.form_submit_button("SIGN IN" if is_login else "CREATE ACCOUNT", use_container_width=True)
+                    submit = st.form_submit_button("SIGN IN" if is_login else "CREATE ACCOUNT", type="primary", use_container_width=True)
                 with col2:
                     cancel = st.form_submit_button("CANCEL", use_container_width=True)
                 
@@ -983,7 +787,7 @@ def render_modal():
                                 st.rerun()
                             else:
                                 st.error("Invalid credentials. Please try again.")
-                        except:
+                        except Exception as e:
                             st.error("Could not connect to server. Showing demo mode.")
                             st.session_state.token = "demo_token"
                             st.session_state.show_modal = None
@@ -1007,7 +811,7 @@ def render_modal():
                                 st.rerun()
                             else:
                                 st.error("Registration failed. Please try again.")
-                        except:
+                        except Exception as e:
                             st.error("Could not connect to server. Showing demo mode.")
                             st.session_state.token = "demo_token"
                             st.session_state.show_modal = None
@@ -1016,11 +820,11 @@ def render_modal():
             
             st.markdown('</div></div>', unsafe_allow_html=True)
 
-# 主渲染
+# 主渲染逻辑
 if st.session_state.current_page == 'landing':
-    render_luxury_landing()
+    render_landing_page()
 elif st.session_state.current_page == 'dashboard':
-    render_dashboard()
+    render_dashboard_page()
 
 if st.session_state.show_modal:
-    render_modal()
+    render_login_modal()
